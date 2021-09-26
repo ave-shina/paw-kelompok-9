@@ -22,40 +22,74 @@
         <form action="/add" class="ui form" method="POST">
           <div class="ui three fields">
             <div class="field">
-              <label for="perusahaan" class="ui header purple"
+              <label for="nama" class="ui header purple"
                 >Masukan Nama Perusahaan</label
               >
-              <input type="text" name="perusahaan" />
+              <input type="text" name="nama" />
             </div>
             <div class="field">
-              <label for="perusahaan" class="ui header purple"
-                >Masukan Nama Perusahaan</label
+              <label for="umur" class="ui header purple"
+                >Masukan Umur Perusahaan (Tahun)</label
               >
-              <input type="text" name="perusahaan" />
+              <input type="number" name="umur" />
             </div>
             <div class="field">
-              <label for="perusahaan" class="ui header purple"
-                >Masukan Nama Perusahaan</label
+              <label for="pegawai" class="ui header purple"
+                >Masukan Jumlah Pegawai Perusahaan</label
               >
-              <input type="text" name="perusahaan" />
+              <input type="number" name="pegawai" />
             </div>
           </div>
           <div class="ui fluid field">
-            <input type="text" value="Submit" class="ui button purple fluid" />
+            <input
+              type="submit"
+              value="Submit"
+              class="ui button purple fluid"
+            />
           </div>
         </form>
 
         <br /><br />
         <table class="ui purple table">
           <thead>
-            <th>Nama Perusahaan</th>
-            <th>Lama Berdiri (Tahun)</th>
-            <th>Jumlah Pegawai</th>
+            <tr>
+              <th>Nama Perusahaan</th>
+              <th>Umur Perusahaan (Tahun)</th>
+              <th>Jumlah Pegawai</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
           </thead>
           <tbody>
-            <td>Samsung</td>
-            <td>120</td>
-            <td>29 Juta</td>
+            <tr>
+              <td>Samsung</td>
+              <td>120</td>
+              <td>29</td>
+              <td>
+                <a class="ui purple button"
+                  ><i class="edit outline icon"></i
+                ></a>
+              </td>
+              <td>
+                <a class="ui pink button"><i class="trash icon"></i></a>
+              </td>
+            </tr>
+
+            <% perusahaans.forEach((perusahaan)=>{%>
+            <tr>
+              <td><%- perusahaan.nama %></td>
+              <td><%- perusahaan.umur %></td>
+              <td><%- perusahaan.pegawai %></td>
+              <td>
+                <a class="ui purple button"
+                  ><i class="edit outline icon"></i
+                ></a>
+              </td>
+              <td>
+                <a class="ui pink button"><i class="trash icon"></i></a>
+              </td>
+            </tr>
+            <% }); %> })
           </tbody>
         </table>
       </div>
