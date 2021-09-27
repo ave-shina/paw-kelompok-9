@@ -58,4 +58,15 @@ router.post('/edit/:id', (req, res, next) => {
   })
 });
 
+//delete
+router.get('/', (req,res,next)=>{
+    perusahaan.findByIdAndDelete({_id: req.params.id}, (err, docs)=>{
+        if(err){
+            console.log("Terjadi kesalahan dalam penghapusan Data");
+            next(err);
+        }else{
+            console.log("Data berhasil dihapus")
+        }
+    })
+})
 module.exports = router;
