@@ -10,16 +10,9 @@
   </head>
   <body>
     <div class="wrapper">
-      <div class="ui massive menu">
-        <div class="ui container">
-          <div class="header item"><a href="/">Beranda</a></div>
-          <a class="item"> Kontak </a>
-          <a class="item"> Tentang Kami </a>
-        </div>
-      </div>
       <br /><br /><br />
       <div class="ui container">
-        <form action="/add" class="ui form" method="POST">
+        <form id="form" action="/add" class="ui form" method="POST">
           <div class="ui three fields">
             <div class="field">
               <label for="nama" class="ui header purple"
@@ -61,28 +54,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Samsung</td>
-              <td>120</td>
-              <td>29</td>
-              <td>
-                <a class="ui purple button"
-                  ><i class="edit outline icon"></i
-                ></a>
-              </td>
-              <td>
-                <a class="ui pink button"><i class="trash icon"></i></a>
-              </td>
-            </tr>
-
             <% perusahaans.forEach((perusahaan)=>{%>
             <tr>
               <td><%- perusahaan.nama %></td>
               <td><%- perusahaan.umur %></td>
               <td><%- perusahaan.pegawai %></td>
               <td>
-                <a class="ui purple button"
-                  ><i class="edit outline icon"></i
+                <a class="ui purple button" href="/edit/<%= perusahaan._id %>"><i class="edit outline icon"></i
                 ></a>
               </td>
               <td>
