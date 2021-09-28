@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD PAW Kelompok 9</title>
+    <link rel="stylesheet" href="/css/semantic.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <br /><br /><br />
+      <div class="ui container">
+        <form id="form" action="/add" class="ui form" method="POST">
+          <div class="ui three fields">
+            <div class="field">
+              <label for="nama" class="ui header purple"
+                >Masukan Nama Perusahaan</label
+              >
+              <input type="text" name="nama" />
+            </div>
+            <div class="field">
+              <label for="umur" class="ui header purple"
+                >Masukan Umur Perusahaan (Tahun)</label
+              >
+              <input type="number" name="umur" />
+            </div>
+            <div class="field">
+              <label for="pegawai" class="ui header purple"
+                >Masukan Jumlah Pegawai Perusahaan</label
+              >
+              <input type="number" name="pegawai" />
+            </div>
+          </div>
+          <div class="ui fluid field">
+            <input
+              type="submit"
+              value="Submit"
+              class="ui button purple fluid"
+            />
+          </div>
+        </form>
+
+        <br /><br />
+        <table class="ui purple table">
+          <thead>
+            <tr>
+              <th>Nama Perusahaan</th>
+              <th>Umur Perusahaan (Tahun)</th>
+              <th>Jumlah Pegawai</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% perusahaans.forEach((perusahaan)=>{%>
+            <tr>
+              <td><%- perusahaan.nama %></td>
+              <td><%- perusahaan.umur %></td>
+              <td><%- perusahaan.pegawai %></td>
+              <td>
+                <a class="ui purple button" href="/edit/<%= perusahaan._id %>"
+                  ><i class="edit outline icon"></i
+                ></a>
+              </td>
+              <td>
+                <a class="ui pink button" href="/delete/<%= perusahaan._id %>"
+                  ><i class="trash icon"></i
+                ></a>
+              </td>
+            </tr>
+            <% }); %> })
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="/js/semantic.min.js"></script>
+  </body>
+</html>
