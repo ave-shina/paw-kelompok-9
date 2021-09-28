@@ -16,17 +16,17 @@ router.get("/", (req, res, next) => {
 // Route to add data
 router.post("/add", (req, res, next) => {
   //Requesting datas from page
-  const {nama, umur, pegawai} = req.body;
+  const { nama, umur, pegawai } = req.body;
 
   console.log(nama, umur, pegawai);
 
-  // Saving datas to mongoDB
   const Perusahaan = new perusahaan({
     nama,
     umur,
     pegawai,
   });
 
+  // Saving datas to mongoDB
   Perusahaan.save((err) => {
     if (err) console.log("Something went wrong", err);
     else {
@@ -36,37 +36,45 @@ router.post("/add", (req, res, next) => {
   });
 });
 
-router.get('/edit/:id', (req, res, next) => {
+// Getting edited datas
+router.get("/edit/:id", (req, res, next) => {
   console.log(req.params.id);
-  perusahaan.findOneAndUpdate({_id: req.params.id},req.body, { new: true }, (err, docs)=>{
+  perusahaan.findOneAndUpdate(
+    { _id: req.params.id },
+    req.body,
+    { new: true },
+    (err, docs) => {
       console.log(docs);
-      
+
       console.log(docs.nama);
-      
-      res.render('edit', {perusahaan:docs});
-  })
+
+      res.render("edit", { perusahaan: docs });
+    }
+  );
 });
 
-router.post('/edit/:id', (req, res, next) => {
-  perusahaan.findByIdAndUpdate({_id: req.params.id},req.body, (err)=>{
-      if (err) {
-          console.log(err);
-          next(err);
-      } else {
-          res.redirect('/');
-      }
-  })
+// Post edited data to page
+router.post("/edit/:id", (req, res, next) => {
+  perusahaan.findByIdAndUpdate({ _id: req.params.id }, req.body, (err) => {
+    if (err) {
+      console.log("Something went wrong", err);
+      next(err);
+    } else {
+      res.redirect("/");
+    }
+  });
 });
 
-//delete
-router.get('/', (req,res,next)=>{
-    perusahaan.findByIdAndDelete({_id: req.params.id}, (err, docs)=>{
-        if(err){
-            console.log("Terjadi kesalahan dalam penghapusan Data");
-            next(err);
-        }else{
-            console.log("Data berhasil dihapus")
-        }
-    })
-})
+// Deleting a perusahaan
+router.get("/delete/:id", (req, res, next) => {
+  perusahaan.findByIdAndDelete({ _id: req.params.id }, (err, docs) => {
+    if (err) {
+      console.log("Something went wrong", err);
+      next(err);
+    } else {
+      res.redirect("/");
+    }
+  });
+});
+
 module.exports = router;

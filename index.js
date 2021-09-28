@@ -33,6 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //Routing
+//Home
 app.use("/", homeRoute);
 
 app.listen(port, () => {

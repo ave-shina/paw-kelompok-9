@@ -60,11 +60,14 @@
               <td><%- perusahaan.umur %></td>
               <td><%- perusahaan.pegawai %></td>
               <td>
-                <a class="ui purple button" href="/edit/<%= perusahaan._id %>"><i class="edit outline icon"></i
+                <a class="ui purple button" href="/edit/<%= perusahaan._id %>"
+                  ><i class="edit outline icon"></i
                 ></a>
               </td>
               <td>
-                <a class="ui pink button" href="/delete/<%= grup._id %>"><i class="trash icon"></i></a>
+                <a class="ui pink button" href="/delete/<%= perusahaan._id %>"
+                  ><i class="trash icon"></i
+                ></a>
               </td>
             </tr>
             <% }); %> })
