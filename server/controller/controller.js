@@ -1,29 +1,27 @@
-const express = require("express");
-const router = express.Router();
 const perusahaan = require("../models/Perusahaan");
 
-// Get all data
-router.get("/", async (req, res) => {
+//get all data
+exports.get = async (req, res) => {
   try {
     const Perusahaans = await perusahaan.find();
     res.json(Perusahaans);
   } catch (err) {
     res.json({ message: err });
   }
-});
+};
 
-// Get a single data
-router.get("/:id", async (req, res) => {
+//find a data
+exports.find = async (req, res) => {
   try {
     const Perusahaan = await perusahaan.findById(req.params.id);
     res.json(Perusahaan);
   } catch (err) {
     res.json({ message: err });
   }
-});
+};
 
-// Add a data
-router.post("/add", async (req, res) => {
+//add a data
+exports.add = async (req, res) => {
   if (!req.body) {
     res.status(400).send({ message: "Data tidak boleh kosong" });
   }
@@ -36,17 +34,16 @@ router.post("/add", async (req, res) => {
   });
 
   console.log(nama, umur, pegawai);
-
   try {
-    const savedPerusahaan = await Perusahaan.save();
-    res.json(savedPerusahaan);
+    await Perusahaan.save();
+    res.redirect("/");
   } catch (err) {
     res.json({ message: err });
   }
-});
+};
 
-// Update a data
-router.patch("/:id", async (req, res) => {
+//update a data
+exports.update = async (req, res) => {
   try {
     const updatedPerusahaan = await perusahaan.findOneAndUpdate(
       {
@@ -59,28 +56,14 @@ router.patch("/:id", async (req, res) => {
   } catch (err) {
     res.json({ message: err });
   }
-});
+};
 
-// Post edited data to page
-// router.post("/:id", async (req, res, next) => {
-//   perusahaan.findByIdAndUpdate({ _id: req.params.id }, req.body, (err) => {
-//     if (err) {
-//       console.log("Something went wrong", err);
-//       next(err);
-//     } else {
-//       res.redirect("/");
-//     }
-//   });
-// });
-
-// Delete a data
-router.delete("/:id", async (req, res) => {
+//delete a data
+exports.delete = async (req, res) => {
   try {
-    const deteledPerusahaan = await perusahaan.remove({ _id: req.params.id });
-    res.json(deteledPerusahaan);
+    await perusahaan.findByIdAndDelete(req.params.id);
+    res.redirect("/");
   } catch (err) {
     res.json({ message: err });
   }
-});
-
-module.exports = router;
+};
