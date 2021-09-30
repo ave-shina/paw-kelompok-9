@@ -1,50 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CRUD PAW Kelompok 9</title>
-    <link rel="stylesheet" href="/css/semantic.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/css/semantic.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
     <div class="wrapper">
-        <br>
-        <br>
-        <br>
-        <div class="ui container">
-            <form id="form" action="/edit/<%= perusahaan._id %>" class="ui form" method="POST">
-                <div class="three fields">
-                    <div class="field">
-                        <label for="label" class="ui header purple">Masukan Nama Perusahaan</label>
-                        <input type="text" name="nama" placeholder="Masukan Nama Perusahaan" value="<%= perusahaan.nama %>"  id="nama">
-                    </div>
-                    <div class="field">
-                        <label for="label" class="ui header purple">Masukan Umur Perusahaan</label>
-                        <input type="number" name="umur" placeholder="Masukan Umur Perusahaan" value="<%= perusahaan.umur %>" id="umur">
-                    </div>
-                    <div class="field">
-                        <label for="label" class="ui header purple">Masukan Jumlah Pegawai Perusahaan</label>
-                        <input type="number" name="pegawai" placeholder="Masukan Jumlah Pegawai Perusahaan" value="<%= perusahaan.pegawai %>" id="pegawai">
-                    </div>
-                </div>
-                <!-- <div class=" one fields"> -->
-                    <div class="field fluid">
-                        <input
-                        type="submit"
-                        value="Submit"
-                        class="ui button purple fluid"
-                      />
-                    </div>
-                <!-- </div> -->
-            </form>
-            <br>
-            <br>
-            <br>
-
-        </div>
+      <br />
+      <br />
+      <br />
+      <div class="ui container">
+        <form
+          id="form"
+          action="/perusahaans/edit/<%= perusahaan._id %>"
+          class="ui form"
+          method="POST"
+        >
+          <div class="three fields">
+            <div class="field">
+              <label for="label" class="ui header purple"
+                >Masukan Nama Perusahaan</label
+              >
+              <input
+                type="text"
+                name="nama"
+                placeholder="Masukan Nama Perusahaan"
+                value="<%= perusahaan.nama %>"
+                id="nama"
+              />
+            </div>
+            <div class="field">
+              <label for="label" class="ui header purple"
+                >Masukan Umur Perusahaan</label
+              >
+              <input
+                type="number"
+                name="umur"
+                placeholder="Masukan Umur Perusahaan"
+                value="<%= perusahaan.umur %>"
+                id="umur"
+              />
+            </div>
+            <div class="field">
+              <label for="label" class="ui header purple"
+                >Masukan Jumlah Pegawai Perusahaan</label
+              >
+              <input
+                type="number"
+                name="pegawai"
+                placeholder="Masukan Jumlah Pegawai Perusahaan"
+                value="<%= perusahaan.pegawai %>"
+                id="pegawai"
+              />
+            </div>
+          </div>
+          <!-- <div class=" one fields"> -->
+          <div class="field fluid">
+            <input
+              type="submit"
+              value="Submit"
+              class="ui button purple fluid"
+            />
+          </div>
+          <!-- </div> -->
+        </form>
+        <br />
+        <br />
+        <br />
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
