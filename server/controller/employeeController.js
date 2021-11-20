@@ -1,10 +1,10 @@
-const perusahaan = require("../models/Perusahaan");
+const employee = require("../models/user");
 
 //get all data
 exports.get = async (req, res) => {
   try {
-    const Perusahaans = await perusahaan.find();
-    res.json(Perusahaans);
+    const Employees = await employee.find();
+    res.json(Employees);
   } catch (err) {
     res.json({ message: err });
   }
@@ -13,8 +13,8 @@ exports.get = async (req, res) => {
 //find a data
 exports.find = async (req, res) => {
   try {
-    const Perusahaan = await perusahaan.findById(req.params.id);
-    res.json(Perusahaan);
+    const Employee = await employee.findById(req.params.id);
+    res.json(Employee);
   } catch (err) {
     res.json({ message: err });
   }
@@ -25,18 +25,20 @@ exports.add = async (req, res) => {
   if (!req.body) {
     res.status(400).send({ message: "Data tidak boleh kosong" });
   }
-  const { nama, umur, pegawai } = req.body;
+  const { id, nama, position, points, active } = req.body;
 
-  const Perusahaan = new perusahaan({
+  const Employee = new employee({
+    id,
     nama,
-    umur,
-    pegawai,
+    position,
+    points,
+    active,
   });
 
-  console.log(nama, umur, pegawai);
+  console.log(id, nama, position, points, active);
   try {
-    await Perusahaan.save();
-    res.redirect("/");
+    await Employee.save();
+    // res.redirect("/");
   } catch (err) {
     res.json({ message: err });
   }
@@ -44,7 +46,7 @@ exports.add = async (req, res) => {
 
 //update a data
 exports.update = async (req, res) => {
-  await perusahaan
+  await employee
     .findByIdAndUpdate(
       {
         _id: req.params.id,
@@ -68,7 +70,7 @@ exports.update = async (req, res) => {
 //delete a data
 exports.delete = async (req, res) => {
   try {
-    await perusahaan.findByIdAndDelete(req.params.id);
+    await employee.findByIdAndDelete(req.params.id);
     res.redirect("/");
   } catch (err) {
     res.json({ message: err });

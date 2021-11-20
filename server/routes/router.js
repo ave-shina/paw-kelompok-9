@@ -1,17 +1,21 @@
 const express = require("express");
 const router = express.Router();
 
-const controller = require("../controller/controller");
-const services = require("../services/render");
+const userController = require("../controller/userController");
+const employeeController = require("../controller/employeeController");
 
-router.get("/", services.homeRoutes);
-router.get("/update/:id", services.update);
+// user API
+router.get("/api/users/", userController.get);
+router.post("/api/users/", userController.add);
+router.get("/api/users/:id", userController.find);
+router.put("/api/users/:id", userController.update);
+router.delete("/api/users/:id", userController.delete);
 
-// API
-router.get("/api/companies/", controller.get);
-router.post("/api/companies/", controller.add);
-router.get("/api/companies/:id", controller.find);
-router.put("/api/companies/:id", controller.update);
-router.delete("/api/companies/:id", controller.delete);
+// employee API
+// router.get("/api/employees/", employeeController.get);
+// router.post("/api/employees/", employeeController.add);
+// router.get("/api/employees/:id", employeeController.find);
+// router.put("/api/employees/:id", employeeController.update);
+// router.delete("/api/employees/:id", employeeController.delete);
 
 module.exports = router;
