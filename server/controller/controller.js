@@ -1,4 +1,4 @@
-const employee = require("../models/user");
+const employee = require("../models/models");
 
 //get all data
 exports.get = async (req, res) => {
@@ -22,25 +22,36 @@ exports.find = async (req, res) => {
 
 //add a data
 exports.add = async (req, res) => {
+  console.log("try");
   if (!req.body) {
     res.status(400).send({ message: "Data tidak boleh kosong" });
   }
-  const { id, nama, position, points, active } = req.body;
+  const { name, position, points, active } = req.body;
+  // const employees = req.body;
 
   const Employee = new employee({
-    id,
-    nama,
+    name,
     position,
     points,
     active,
   });
 
-  console.log(id, nama, position, points, active);
+  // const newEmployee = new employee({
+  //   name: req.body.name,
+  //   position: req.body.position,
+  //   points: req.body.points,
+  //   active: req.body.active,
+  // });
+
+  // console.log(newEmployee);
   try {
+    await newEmployee.save();
     await Employee.save();
+    console.log("berhasil", name, position, points, active);
     // res.redirect("/");
   } catch (err) {
     res.json({ message: err });
+    console.log("error found", name, position, points, active);
   }
 };
 

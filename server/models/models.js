@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 let EmployeeSchema = new mongoose.Schema({
-  id: {
-    type: String,
-    required: true,
-  },
   name: {
     type: String,
     required: true,
@@ -20,4 +16,4 @@ let EmployeeSchema = new mongoose.Schema({
   active: { type: Boolean, required: true },
 });
 
-module.exports = mongoose.model("employee", EmployeeSchema, "employee");
+module.exports = mongoose.model("employee", EmployeeSchema);
