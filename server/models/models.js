@@ -13,7 +13,10 @@ let EmployeeSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  active: { type: Boolean, required: true },
+  active: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("employee", EmployeeSchema);

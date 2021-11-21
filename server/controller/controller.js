@@ -21,13 +21,13 @@ exports.find = async (req, res) => {
 };
 
 //add a data
-exports.add = async (req, res) => {
+exports.add = async (req, res, next) => {
   console.log("try");
   if (!req.body) {
     res.status(400).send({ message: "Data tidak boleh kosong" });
   }
+
   const { name, position, points, active } = req.body;
-  // const employees = req.body;
 
   const Employee = new employee({
     name,
@@ -36,16 +36,7 @@ exports.add = async (req, res) => {
     active,
   });
 
-  // const newEmployee = new employee({
-  //   name: req.body.name,
-  //   position: req.body.position,
-  //   points: req.body.points,
-  //   active: req.body.active,
-  // });
-
-  // console.log(newEmployee);
   try {
-    await newEmployee.save();
     await Employee.save();
     console.log("berhasil", name, position, points, active);
     // res.redirect("/");
