@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 // import Navbar from "./components/Navbar";
-import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Edit from "./pages/Edit";
+import "./App.css";
 
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 // import { getAgendas } from "./actions/agendas";
 
 export default function App() {
@@ -15,12 +15,12 @@ export default function App() {
   // }, [dispatch]);
 
   return (
-    <Router>
+    <BrowserRouter>
       {/* <Navbar /> */}
-      <Switch>
+      <Routes>
         <Route path="/" exact component={Home} />
         <Route path="/edit" exact component={Edit} />
-      </Switch>
-    </Router>
+      </Routes>
+    </BrowserRouter>
   );
 }
