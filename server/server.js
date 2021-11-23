@@ -1,11 +1,13 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const connectDB = require("./database/connection");
 
 const app = express();
+app.use(cors());
 
 dotenv.config({ path: "config.env" });
 const PORT = process.env.PORT;
@@ -23,10 +25,10 @@ app.set("view engine", "ejs");
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(bodyParser.json());
 //Routing
 app.use("/", require("./routes/router"));
-
+app.use(bodyParser.json());
 app.listen(PORT, () => {
   console.log(`The App is running on http://localhost:${PORT}`);
 });
